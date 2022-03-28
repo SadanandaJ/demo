@@ -11,7 +11,7 @@ pipeline {
         stage('checkout') {
             steps {
                 echo 'This is cloning'
-                git branch: 'main', url: 'https://github.com/SadanandaJ/demo.git'
+                git branch: 'master', url: 'https://github.com/SadanandaJ/demo.git'
             }
         }
         stage('compile and Build') {
