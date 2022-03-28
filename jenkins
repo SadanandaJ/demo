@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    tools{
+        maven 'maven3.8'
+    }
+     environment {
+		SERVICE_BRANCH = "master"
+	     }		
+
+    stages {
+        stage('checkout') {
+            steps {
+                echo 'This is cloning'
+                git branch: 'main', url: 'https://github.com/SadanandaJ/demo.git'
+            }
+        }
+        stage('compile and Build') {
+            steps {
+                  sh "mvn clean install"
+		  sh 'echo "The environment variable is ${SERVICE_BRANCH}"'
+            }
+        }
+        stage('test') {
+            steps {
+                echo 'Doing some test'
+                sh "mvn test"
+            }
+        }
+    }
+}
